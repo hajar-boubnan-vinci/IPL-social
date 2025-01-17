@@ -1,4 +1,4 @@
-function passwordChecker(password) {
+function hasMinimumLength(password) {
   return password.length >= 8;
 }
 
@@ -17,8 +17,16 @@ function passwordNoIPLChecker(password) {
   return !iplPattern.test(password);
 }
 
+function passwordChecker(password) {
+  return hasMinimumLength(password) &&
+         passwordSpecialCharChecker(password) &&
+         passwordDigitChecker(password) &&
+         passwordNoIPLChecker(password);
+}
+
 module.exports = {
   passwordChecker,
+  hasMinimumLength,
   passwordSpecialCharChecker,
   passwordDigitChecker,
   passwordNoIPLChecker

@@ -1,9 +1,9 @@
-const { passwordChecker, passwordSpecialCharChecker, passwordDigitChecker, passwordNoIPLChecker } = require('../src/passwordChecker');
+const { hasMinimumLength,passwordChecker, passwordSpecialCharChecker, passwordDigitChecker, passwordNoIPLChecker } = require('../src/passwordChecker');
  
-describe('Password Validation', () => {
+describe('Password length Validation ', () => {
   it('must be at least 8 characters long', () => {
-    expect(passwordChecker('short')).toBe(false);
-    expect(passwordChecker('longenough')).toBe(true);
+    expect(hasMinimumLength('short')).toBe(false);
+    expect(hasMinimumLength('longenough')).toBe(true);
   });
 });
  
@@ -28,3 +28,15 @@ describe('Password No IPL Validation', () => {
     expect(passwordNoIPLChecker('longipl')).toBe(false);
   });
 });
+
+describe('Password Validation', () => {
+    it('should validate the password correctly', () => {
+        expect(passwordChecker('short')).toBe(false);
+        expect(passwordChecker('longenough')).toBe(false);
+        expect(passwordChecker('longenough1')).toBe(false);
+        expect(passwordChecker('long@enough')).toBe(false);
+        expect(passwordChecker('long@enough1')).toBe(true);
+        expect(passwordChecker('long@enough1IPL')).toBe(false);
+      });
+  });
+

@@ -1,4 +1,4 @@
-const { passwordChecker, passwordSpecialCharChecker, passwordDigitChecker  } = require('../src/passwordChecker');
+const { passwordChecker, passwordSpecialCharChecker, passwordDigitChecker, passwordNoIPLChecker } = require('../src/passwordChecker');
  
 describe('Password Validation', () => {
   it('must be at least 8 characters long', () => {
@@ -18,5 +18,13 @@ describe('Password Digit Validation', () => {
   it('should contain at least one digit', () => {
     expect(passwordDigitChecker('longenough')).toBe(false);
     expect(passwordDigitChecker('long3nough')).toBe(true);
+  });
+});
+ 
+describe('Password No IPL Validation', () => {
+  it('should not contain the string "IPL" in any case', () => {
+    expect(passwordNoIPLChecker('longenough')).toBe(true);
+    expect(passwordNoIPLChecker('longIPL')).toBe(false);
+    expect(passwordNoIPLChecker('longipl')).toBe(false);
   });
 });

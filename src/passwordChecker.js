@@ -2,4 +2,12 @@ function passwordChecker(password) {
   return password.length >= 8;
 }
 
-module.exports = passwordChecker;
+function passwordSpecialCharChecker(password) {
+  const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+  return specialCharPattern.test(password);
+}
+
+module.exports = {
+  passwordChecker,
+  passwordSpecialCharChecker
+};

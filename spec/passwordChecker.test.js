@@ -1,4 +1,4 @@
-const { passwordChecker, passwordSpecialCharChecker } = require('../src/passwordChecker');
+const { passwordChecker, passwordSpecialCharChecker, passwordDigitChecker  } = require('../src/passwordChecker');
  
 describe('Password Validation', () => {
   it('must be at least 8 characters long', () => {
@@ -11,5 +11,12 @@ describe('Password Special Character Validation', () => {
   it('should contain at least one special character', () => {
     expect(passwordSpecialCharChecker('longenough')).toBe(false);
     expect(passwordSpecialCharChecker('long@enough')).toBe(true);
+  });
+});
+ 
+describe('Password Digit Validation', () => {
+  it('should contain at least one digit', () => {
+    expect(passwordDigitChecker('longenough')).toBe(false);
+    expect(passwordDigitChecker('long3nough')).toBe(true);
   });
 });
